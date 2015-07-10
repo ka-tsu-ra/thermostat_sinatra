@@ -16,9 +16,9 @@ $( document ).ready(function() {
     $("#temp").html(thermostat.temp);
   };
 
-  
+  var city = "London";
 
-  var cityWeather =  function(city) {
+  var cityWeather =  function() {
 
     $.getJSON('http://api.openweathermap.org/data/2.5/find?q=' + city + '&units=metric',
       function (data) {
@@ -31,8 +31,8 @@ $( document ).ready(function() {
 
   $('#cityId').submit(function(e) {
     e.preventDefault();
-    var city = $('#cityName').val();
-    cityWeather(city);
+    city = $('#cityName').val();
+    cityWeather();
   });
 
   refreshTemp();
