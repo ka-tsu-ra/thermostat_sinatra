@@ -11,6 +11,14 @@ $( document ).ready(function() {
     };
   };
 
+  function firstTemp() {
+    $.get('http://localhost:9292/temp', function (data) {
+        thermostat.temp = parseInt(data);
+        refreshTemp();
+        // PUT THE REFRESHTEMP CALL INSIDE THE GET FUNCTION SO THAT IT WONT EXECUTE UNTIL THE GET IS FINISHED.
+      });
+  };
+
   function refreshTemp() {
     colour();
     $("#temp").html(thermostat.temp);
@@ -35,17 +43,21 @@ $( document ).ready(function() {
     cityWeather();
   });
 
-  refreshTemp();
+  firstTemp();
   cityWeather();
 
   $("#up").click(function() {
     thermostat.up();
     refreshTemp();
+    $.post( "/start", {temp: thermostat.temp}, function () {
+    } );
   });
 
   $("#down").click(function() {
     thermostat.down();
     refreshTemp();
+    $.post( "/start", {temp: thermostat.temp}, function () {
+    } );
   });
 
   $("#toggle").change(function() {

@@ -2,12 +2,22 @@ require 'sinatra/base'
 
 class ThermostatWeb < Sinatra::Base
 
+  enable :sessions
+
   set :views, proc { File.join(root, '..', 'views') }
   set :public_folder, proc { File.join(root, '..', 'public') }
 
 
   get '/' do
-    erb :'thermostat'
+    erb :'index'
+  end
+
+  post '/start' do
+    session[:temperature] = params[:temp]
+  end
+
+  get '/temp' do
+    "#{session[:temperature] || 20}"
   end
 
   # start the server if ruby file executed directly
