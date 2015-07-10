@@ -22,8 +22,8 @@ $( document ).ready(function() {
 
     $.getJSON('http://api.openweathermap.org/data/2.5/find?q=' + city + '&units=metric',
       function (data) {
-        console.log(data);
-        $('#cityWeather').html(data.list[0].main.temp)
+        $('#currentCity').html(city + " current temp");
+        $('#cityWeather').html(data.list[0].main.temp);
     });
 
     // the function(data) {} part is the 'callback' - the function that runs when ajax call is finished. Part of the JavaScript asynchronous thing.
