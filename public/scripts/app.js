@@ -12,7 +12,7 @@ $( document ).ready(function() {
   };
 
   function firstTemp() {
-    $.get('http://localhost:9292/temp', function (data) {
+    $.get('/temp', function (data) {
         thermostat.temp = parseInt(data);
         refreshTemp();
         // PUT THE REFRESHTEMP CALL INSIDE THE GET FUNCTION SO THAT IT WONT EXECUTE UNTIL THE GET IS FINISHED.
